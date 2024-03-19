@@ -16,6 +16,6 @@ Our dataset is available at [here](https://drive.google.com/drive/folders/1_oK9g
 
 7.+1, 0, -1 respectively represent positive, neutral, and negative.
 
-Rules 4, 5, and 6 were not included in the ChatASU task. We welcome everyone to use our annotated data for more work.
+Rules 4, 5, and 6 were not used in the ChatASU task. We welcome everyone to use our annotated data for more work.
 
 
