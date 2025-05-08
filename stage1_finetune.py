@@ -1,14 +1,4 @@
-# -*- coding:utf-8 -*-
-# @project: ChatGLM-Finetuning
-# @filename: finetuning_lora
-# @author: 刘聪NLP
-# @zhihu: https://www.zhihu.com/people/LiuCongNLP
-# @contact: logcongcong@gmail.com
-# @time: 2023/4/4 16:34
-"""
-    文件说明：
-            
-"""
+
 from modeling_chatglm import ChatGLMForConditionalGeneration
 from tokenization_chatglm import ChatGLMTokenizer
 import torch
@@ -20,9 +10,6 @@ import os
 from shutil import copy
 from peft import LoraConfig, get_peft_model, get_peft_model_state_dict, prepare_model_for_int8_training, \
     set_peft_model_state_dict
-# deepspeed.ops.op_builder.CPUAdamBuilder().load()
-# os.environ["PATH"] = os.environ["PATH"]+":/public/home/djingwang/ydliu/bin"
-os.environ["PATH"] = os.environ["PATH"]+":/public/home/djingwang/ydliu2/bin"
 
 def print_trainable_parameters(model):
     trainable_params = 0
@@ -41,12 +28,12 @@ def print_trainable_parameters(model):
 
 def set_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--train_path', default='data/mainTasktrain.json', type=str, help='')
-    parser.add_argument('--model_dir', default="/public/home/djingwang/ydliu/ChatGLM-6B/", type=str, help='')
+    parser.add_argument('--train_path', default='data/train.json', type=str, help='')
+    parser.add_argument('--model_dir', default="model_dir", type=str, help='')
     parser.add_argument('--num_train_epochs', default=10, type=int, help='')
     parser.add_argument('--train_batch_size', default=2, type=int, help='')
     parser.add_argument('--gradient_accumulation_steps', default=1, type=int, help='')
-    parser.add_argument('--output_dir', default='output_dir_lora_2e4nochain/', type=str, help='')
+    parser.add_argument('--output_dir', default='', type=str, help='')
     parser.add_argument('--log_steps', type=int, default=10, help='')
     parser.add_argument('--max_len', type=int, default=768, help='')
     parser.add_argument('--max_src_len', type=int, default=450, help='')
@@ -157,4 +144,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-    # CUDA_VISIBLE_DEVICES=2 deepspeed --master_port 5555 finetuning_lora.py
